@@ -10,7 +10,7 @@ import {
     Navigator
 } from 'react-native';
 
-import FirstScene from "./src/FirstScene";
+import FirstScene from "./src/SplashPage";
 
 export default class RNOneside extends React.Component {
     render() {

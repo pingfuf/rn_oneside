@@ -7,7 +7,7 @@ import {
     TouchableHighlight,
     View
 } from 'react-native';
-import FirstScene from './FirstScene'
+import FirstScene from './SplashPage'
 
 export default class MyScene extends Component {
 
