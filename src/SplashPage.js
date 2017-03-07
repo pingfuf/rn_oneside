@@ -92,11 +92,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     resizeMode: Image.resizeMode.contain
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
   bottom: {
     flexDirection: 'row',
     justifyContent: 'center',
