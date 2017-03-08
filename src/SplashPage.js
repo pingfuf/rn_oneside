@@ -21,28 +21,17 @@ export default class FirstScene extends React.Component {
   }
 
   componentDidMount() {
-    this.timer = setTimeout(() => {
-      console.log('把一个定时器的引用挂在this上');
-      this._gotoMainPage();
-    }, 1500);
+    // this.timer = setTimeout(() => {
+    //   console.log('把一个定时器的引用挂在this上');
+    //   this._gotoMainPage();
+    // }, 1500);
   }
 
   _pressButton() {
-    let defaultComponent = MainComponent;
-    const {navigator} = this.props;
-    //为什么这里可以取得 props.navigator?请看上文:
-    //<Component {...route.params} navigator={navigator} />
-    //这里传递了navigator作为props
-    if (navigator) {
-      navigator.push({
-        name: 'MainComponent',
-        component: MainComponent
-      });
-    }
+    alert("tempppp")
   }
 
   _gotoMainPage() {
-    let defaultComponent = MainComponent;
     const {navigator} = this.props;
     //为什么这里可以取得 props.navigator?请看上文:
     //<Component {...route.params} navigator={navigator} />
@@ -67,6 +56,14 @@ export default class FirstScene extends React.Component {
         <View style={styles.bottom}>
           <Text style={{fontSize: 14}}>{url}</Text>
         </View>
+        <View style={styles.test}>
+          <TouchableOpacity style={{height: 30, width:60, marginRight:10}} onPress={()=>{this._gotoMainPage()}}>
+            <Text>gotoMain</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{height: 30, width:60}} onPress={()=>{alert("lsls")}}>
+            <Text>lslslsl</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -74,7 +71,7 @@ export default class FirstScene extends React.Component {
   componentWillUnmount() {
     // 如果存在this.timer，则使用clearTimeout清空。
     // 如果你使用多个timer，那么用多个变量，或者用个数组来保存引用，然后逐个clear
-    this.timer && clearTimeout(this.timer);
+    //this.timer && clearTimeout(this.timer);
   }
 }
 
@@ -93,6 +90,12 @@ const styles = StyleSheet.create({
     resizeMode: Image.resizeMode.contain
   },
   bottom: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 60
+  },
+
+  test: {
     flexDirection: 'row',
     justifyContent: 'center',
     height: 60

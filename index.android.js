@@ -10,12 +10,12 @@ import {
     Navigator
 } from 'react-native';
 
-import FirstScene from "./src/SplashPage";
+import SplashPage from "./src/SplashPage";
 
 export default class RNOneside extends React.Component {
     render() {
         let defaultName = "First";
-        let defaultComponent = FirstScene;
+        let defaultComponent = SplashPage;
         return (
             <Navigator
                 initialRoute={{name:defaultName, component: defaultComponent}}

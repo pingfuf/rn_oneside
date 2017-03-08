@@ -18,40 +18,45 @@ export default class StoryPage extends BaseComponent {
 
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
     this.state = {
-      dataSource: ds.cloneWithRows([
-        {
-          id: "",
-          img: "",
-          title: "name",
-          desc: ""
-        }
-      ])
+      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+      data: [{
+        title:"temp",
+        img:"",
+        id:"temp",
+        desc:"temp"
+      }]
     };
   }
 
   componentDidMount() {
+    console.log('before setstate');
     super.startRequest("http://route.showapi.com/955-1", {"page": page, "type": "dp"}, (data)=>{
       let code = data.showapi_res_code;
       if (code == 0) {
         let listObj = data.showapi_res_body.pagebean;
         if (listObj != null) {
-          let listData = listObj.contentlist;
-          for (let i = 0; i < listData.length; i++) {
-              this.state.dataSource.cloneWithRows()
-          }
+          this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(listObj.contentlist)
+          });
         }
       }
-    })
+    });
   }
 
-  _pressButton(rowData) {
-    const {navigator} = this.props;
-    if (navigator) {
-      //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面:FirstPageComponent了
-      navigator.pop();
-    }
+  /**
+   *
+   * @param rowData
+   * @private
+   */
+  gotoStoryDetailPage(rowData) {
+    alert(rowData.title);
+    // const {navigator} = this.props;
+    // if (navigator) {
+    //   //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面:FirstPageComponent了
+    //   navigator.pop();
+    // }
   }
 
   render() {
@@ -79,12 +84,12 @@ export default class StoryPage extends BaseComponent {
               dataSource={this.state.dataSource}
               renderRow={(rowData)=>
                 <View style={styles.content}>
-                  <Image source={rowData.img} />
+                  <Image source={{uri:rowData.img}} style={[styles.img, {borderRadius: 25}]} />
 
-                  <TouchableHighlight style={styles.item} onPress={this._pressButton(rowData)}>
-                    <View style={styles.item}>
-                      <Text>{rowData.title}</Text>
-                      <Text>{rowData.desc}</Text>
+                  <TouchableHighlight style={styles.item} onPress={()=>this.gotoStoryDetailPage(rowData)}>
+                    <View>
+                      <Text numberOfLines={1} style={styles.title}>{rowData.title}</Text>
+                      <Text numberOfLines={2} style={styles.desc}>{rowData.desc}</Text>
                     </View>
                   </TouchableHighlight>
                 </View>
@@ -106,11 +111,30 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'#aabbcc'
+    backgroundColor:'#ffffff'
   },
 
   item: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginLeft: 5
+  },
+
+  img: {
+    height: 50,
+    width: 50,
+    marginLeft: 10
+  },
+
+  title: {
+    fontSize: 16,
+    marginRight: 10
+  },
+
+  desc: {
+    marginTop: 5,
+    fontSize: 14,
+    marginRight: 10
   }
 });
