@@ -7,18 +7,18 @@ import {
   ListView,
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   View
 } from 'react-native';
 import DropDownMenu from 'react-native-dropdown-menu';
 import BaseComponent from './BaseComponent';
+import StoryDetailPage from './StoryDetailPage';
 const data = {}
 const page = 1;
 export default class StoryPage extends BaseComponent {
 
   constructor(props) {
     super(props);
-
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       data: [{
@@ -46,17 +46,24 @@ export default class StoryPage extends BaseComponent {
   }
 
   /**
+   * 跳转到故事详情页面
    *
    * @param rowData
    * @private
    */
   gotoStoryDetailPage(rowData) {
-    alert(rowData.title);
-    // const {navigator} = this.props;
-    // if (navigator) {
-    //   //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面:FirstPageComponent了
-    //   navigator.pop();
-    // }
+    const {navigator} = this.props;
+    if (navigator) {
+      //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面:FirstPageComponent了
+      navigator.push({
+        name: "storyDetail",
+        component: StoryDetailPage,
+        params: {
+          id: rowData.id,
+          title: rowData.title
+        }
+      })
+    }
   }
 
   render() {
@@ -86,12 +93,12 @@ export default class StoryPage extends BaseComponent {
                 <View style={styles.content}>
                   <Image source={{uri:rowData.img}} style={[styles.img, {borderRadius: 25}]} />
 
-                  <TouchableHighlight style={styles.item} onPress={()=>this.gotoStoryDetailPage(rowData)}>
+                  <TouchableOpacity style={styles.item} onPress={()=>this.gotoStoryDetailPage(rowData)}>
                     <View>
                       <Text numberOfLines={1} style={styles.title}>{rowData.title}</Text>
                       <Text numberOfLines={2} style={styles.desc}>{rowData.desc}</Text>
                     </View>
-                  </TouchableHighlight>
+                  </TouchableOpacity>
                 </View>
               }
             />

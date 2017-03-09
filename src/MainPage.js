@@ -38,7 +38,8 @@ export default class MainComponent extends Component {
           badgeText="1"
           onPress={() => this.setState({ selectedTab: 'home' })}>
 
-          <StoryPage />
+          {/* 这样传递navigator */}
+          <StoryPage {...this.props}/>
 
         </TabNavigator.Item>
 
@@ -55,7 +56,7 @@ export default class MainComponent extends Component {
           renderBadge={() => <Text>3</Text>}
           onPress={() => this.setState({ selectedTab: 'profile' })}>
 
-          <PicPage title="PicPage" />
+          <PicPage title="PicPage" {...this.props} />
 
         </TabNavigator.Item>
       </TabNavigator>

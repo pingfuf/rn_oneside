@@ -3,18 +3,32 @@
  */
 import React from 'react';
 import {
-  Dimensions
+  BackAndroid,
+  Dimensions,
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native'
 
 const appId = "30094";
 const secret = "8f00d7d21c6645719b4d4f47713b4030";
 
 export default class BaseComponent extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.system = {
       screenWidth: Dimensions.get('window').width,
       screenHeight:Dimensions.get('window').height
+    }
+  }
+
+  componentWillMount() {
+    if (Platform.OS === 'android') {
+      BackAndroid.addEventListener('hardwareBackPress', this.onBackPressed.bind(this));
     }
   }
 
@@ -25,7 +39,7 @@ export default class BaseComponent extends React.Component {
       if(response.ok) {
         return response.json();
       } else {
-        return {"code":1};
+        return {"code": 1};
       }
     }).then((data) => {
       callBack(data)
@@ -51,4 +65,73 @@ export default class BaseComponent extends React.Component {
 
     return realUrl;
   }
+
+  createTitleView() {
+    return this.createTitleView("");
+  }
+
+  /**
+   * 创建title
+   * @returns {XML}
+   */
+  createTitleView(title) {
+    return this.createTitleView(title, null);
+  }
+
+  createTitleView(title, component) {
+    return (
+      <View style={[styles.title, {width: this.system.screenWidth}]}>
+        <TouchableOpacity onPress={()=>this.onBackPressed()}>
+          <Image source={require('./images/ic_arrow_left_black.png')} style={styles.back} />
+        </TouchableOpacity>
+        <Text style={styles.content} numberOfLines={1}>{title}</Text>
+        {component}
+      </View>
+    );
+  }
+
+  /**
+   *
+   */
+  onBackPressed() {
+    const {navigator} = this.props;
+    if (navigator) {
+      if(navigator.getCurrentRoutes().length > 1) {
+        navigator.pop();
+        return true;
+      } else {
+        //
+      }
+    }
+
+    return false;
+  }
+
+  componentWillUnmount() {
+    if (Platform.OS === 'android') {
+      BackAndroid.removeEventListener('hardwareBackPress', this.onBackPressed);
+    }
+  }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    flexDirection: 'row',
+    height: 50,
+    backgroundColor: '#fd6e37',
+    alignItems: 'center',
+  },
+  back: {
+    height: 22,
+    width: 9,
+    marginLeft: 15,
+    marginRight: 15
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    fontSize: 15,
+    color: '#ffffff',
+    alignItems: 'center'
+  }
+});
