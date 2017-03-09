@@ -43,7 +43,7 @@ export default class BaseComponent extends React.Component {
       }
     }).then((data) => {
       callBack(data)
-    })
+    }).done();
   }
 
   /**

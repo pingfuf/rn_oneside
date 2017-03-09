@@ -54,7 +54,7 @@ export default class StoryPage extends BaseComponent {
   gotoStoryDetailPage(rowData) {
     const {navigator} = this.props;
     if (navigator) {
-      //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面:FirstPageComponent了
+      //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面
       navigator.push({
         name: "storyDetail",
         component: StoryDetailPage,
@@ -94,8 +94,10 @@ export default class StoryPage extends BaseComponent {
                   <Image source={{uri:rowData.img}} style={[styles.img, {borderRadius: 25}]} />
 
                   <TouchableOpacity style={styles.item} onPress={()=>this.gotoStoryDetailPage(rowData)}>
-                    <View>
-                      <Text numberOfLines={1} style={styles.title}>{rowData.title}</Text>
+                    <View style={{marginRight: 15}}>
+                      <Text numberOfLines={1} style={styles.title}>
+                        {rowData.title}
+                      </Text>
                       <Text numberOfLines={2} style={styles.desc}>{rowData.desc}</Text>
                     </View>
                   </TouchableOpacity>
@@ -125,7 +127,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    marginLeft: 5
+    marginLeft: 5,
+    marginRight: 15
   },
 
   img: {

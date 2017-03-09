@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -13,7 +14,23 @@ import BaseComponent from './BaseComponent'
 export default class StoryDetailPage extends BaseComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      text: ""
+    };
+  }
+
+  componentDidMount() {
+    super.startRequest("http://route.showapi.com/955-2", {id: this.props.id}, (data)=>{
+      let code = data.showapi_res_code;
+      if (code == 0) {
+        let body = data.showapi_res_body;
+        if (body) {
+          this.setState({
+            text: data.showapi_res_body.text
+          })
+        }
+      }
+    })
   }
 
   _pressButton() {
@@ -28,9 +45,11 @@ export default class StoryDetailPage extends BaseComponent {
     return (
       <View style={styles.container}>
         {super.createTitleView(this.props.title)}
-        <TouchableHighlight onPress={this._pressButton.bind(this)}>
-          <Text>点我跳回去</Text>
-        </TouchableHighlight>
+        <ScrollView>
+          <Text style={styles.content}>
+            {this.state.text}
+          </Text>
+        </ScrollView>
       </View>
     );
   }
@@ -41,5 +60,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#ffffff',
+  },
+  content: {
+    color:'#000000',
+    margin: 15
   }
 });
