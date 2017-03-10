@@ -26,7 +26,8 @@ export default class StoryPage extends BaseComponent {
         img:"",
         id:"temp",
         desc:"temp"
-      }]
+      }],
+      index: 0
     };
   }
 
@@ -67,29 +68,47 @@ export default class StoryPage extends BaseComponent {
   }
 
   render() {
-    let data = [["鬼故事", "鬼故事", "笑话"],
-                ["短篇", "短篇", "长篇", "校园", "医院", "家里", "民间", "灵异", "原创", "内涵"]];
+    let data = [["鬼故事", "笑话"],
+                ["短篇", "长篇", "校园", "医院", "家里", "民间", "灵异", "原创", "内涵"]];
+    if(this.state.dataSource && this.state.dataSource.getRowCount() > 0) {
+      return (
+        <View style={{flex:1}}>
+
+          <DropDownMenu
+            style={{flex: 1}}
+            //set the arrow icon, default is a triangle
+            arrowImg={require('./images/ic_business_down.png')}
+
+            //set the icon of the selected item, default is a check mark
+            //checkImage={require('./images/ic_business_up.png')}
+            bgColor={"red"}
+            tintColor={"white"}
+            selectItemColor={"red"}
+            data={data}
+            maxHeight={this.system.screenHeight * 0.5}
+            handler={(selection, row) => alert(data[selection][row])}>
+
+            {this.renderListView(this.state.dataSource)}
+
+          </DropDownMenu>
+        </View>
+      );
+    } else {
+      return (
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <Text>家长</Text>
+        </View>
+      )
+    }
+  }
+
+  renderListView(stories) {
     return (
-      <View style={{flex:1}}>
-
-        <DropDownMenu
-          style={{flex: 1}}
-          //set the arrow icon, default is a triangle
-          arrowImg={require('./images/ic_business_down.png')}
-
-          //set the icon of the selected item, default is a check mark
-          //checkImage={require('./images/ic_business_up.png')}
-          bgColor={"red"}
-          tintColor={"white"}
-          selectItemColor={"red"}
-          data={data}
-          maxHeight={this.system.screenHeight * 0.5}
-          handler={(selection, row) => alert(data[selection][row])}>
-
-          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <ListView
-              dataSource={this.state.dataSource}
-              renderRow={(rowData)=>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <ListView
+          onPullRelease={this.onPullRefresh}
+          dataSource={stories}
+          renderRow={(rowData)=>
                 <View style={styles.content}>
                   <Image source={{uri:rowData.img}} style={[styles.img, {borderRadius: 25}]} />
 
@@ -103,12 +122,15 @@ export default class StoryPage extends BaseComponent {
                   </TouchableOpacity>
                 </View>
               }
-            />
-          </View>
-
-        </DropDownMenu>
+        />
       </View>
     );
+  }
+
+  onPullRefresh() {
+    setTimeout(() => {
+      //resolve();
+    }, 3000);
   }
 }
 
