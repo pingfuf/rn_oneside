@@ -25,6 +25,7 @@ export default class FirstScene extends React.Component {
     //   console.log('把一个定时器的引用挂在this上');
     //   this._gotoMainPage();
     // }, 1500);
+    alert(this.props.scheme);
   }
 
   _pressButton() {
@@ -61,7 +62,7 @@ export default class FirstScene extends React.Component {
             <Text>gotoMain</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{height: 30, width:60}} onPress={()=>{alert("lsls")}}>
-            <Text>lslslsl</Text>
+            <Text>测试</Text>
           </TouchableOpacity>
         </View>
       </View>

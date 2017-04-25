@@ -13,12 +13,20 @@ import {
 import SplashPage from "./src/SplashPage";
 
 export default class RNOneside extends React.Component {
+
     render() {
         let defaultName = "First";
         let defaultComponent = SplashPage;
         return (
             <Navigator
-                initialRoute={{name:defaultName, component: defaultComponent}}
+                initialRoute={{
+                    name:defaultName,
+                    component: defaultComponent,
+                    params:{
+                        scheme: this.props.scheme,
+                        p: this.props.p
+                    }
+                }}
                 configureScene={(route) => {
                     return Navigator.SceneConfigs.FloatFromRight;
                 }}

@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
+//import DeviceInfo from 'react-native-device-info'
 
 const appId = "30094";
 const secret = "8f00d7d21c6645719b4d4f47713b4030";
@@ -22,7 +23,7 @@ export default class BaseComponent extends React.Component {
 
     this.system = {
       screenWidth: Dimensions.get('window').width,
-      screenHeight:Dimensions.get('window').height
+      screenHeight: Dimensions.get('window').height
     }
   }
 
@@ -35,8 +36,8 @@ export default class BaseComponent extends React.Component {
   startRequest(url, data, callBack) {
     let realUrl = this.createUrl(url, data);
 
-    fetch(realUrl).then((response)=>{
-      if(response.ok) {
+    fetch(realUrl).then((response) => {
+      if (response.ok) {
         return response.json();
       } else {
         return {"code": 1};
@@ -82,7 +83,7 @@ export default class BaseComponent extends React.Component {
     return (
       <View style={[styles.title, {width: this.system.screenWidth}]}>
         <TouchableOpacity onPress={()=>this.onBackPressed()}>
-          <Image source={require('./images/ic_arrow_left_black.png')} style={styles.back} />
+          <Image source={require('./images/ic_arrow_left_black.png')} style={styles.back}/>
         </TouchableOpacity>
         <Text style={styles.content} numberOfLines={1}>{title}</Text>
         {component}
@@ -91,17 +92,13 @@ export default class BaseComponent extends React.Component {
   }
 
   /**
-   *
+   * 处理返回按键
    */
   onBackPressed() {
     const {navigator} = this.props;
-    if (navigator) {
-      if(navigator.getCurrentRoutes().length > 1) {
-        navigator.pop();
-        return true;
-      } else {
-        //
-      }
+    if (navigator && navigator.getCurrentRoutes().length > 1) {
+      navigator.pop();
+      return true;
     }
 
     return false;

@@ -13,8 +13,7 @@ import {
 import DropDownMenu from 'react-native-dropdown-menu';
 import BaseComponent from './BaseComponent';
 import StoryDetailPage from './StoryDetailPage';
-const data = {}
-const page = 1;
+
 export default class StoryPage extends BaseComponent {
 
   constructor(props) {
@@ -32,12 +31,15 @@ export default class StoryPage extends BaseComponent {
   }
 
   componentDidMount() {
-    console.log('before setstate');
+    let page = this.state.index;
     super.startRequest("http://route.showapi.com/955-1", {"page": page, "type": "dp"}, (data)=>{
       let code = data.showapi_res_code;
       if (code == 0) {
         let listObj = data.showapi_res_body.pagebean;
         if (listObj != null) {
+          if (page == 1) {
+            //this.state.dataSource.removeAllSubscriptions();
+          }
           this.setState({
             dataSource: this.state.dataSource.cloneWithRows(listObj.contentlist)
           });
@@ -86,7 +88,7 @@ export default class StoryPage extends BaseComponent {
             selectItemColor={"red"}
             data={data}
             maxHeight={this.system.screenHeight * 0.5}
-            handler={(selection, row) => alert(data[selection][row])}>
+            handler={(selection, row) => this.freshListView(selection, row, data[selection][row])}>
 
             {this.renderListView(this.state.dataSource)}
 
@@ -131,6 +133,10 @@ export default class StoryPage extends BaseComponent {
     setTimeout(() => {
       //resolve();
     }, 3000);
+  }
+
+  freshListView(section, row, data) {
+    alert(data[section][row]);
   }
 }
 
