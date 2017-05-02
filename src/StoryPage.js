@@ -28,6 +28,8 @@ export default class StoryPage extends BaseComponent {
       }],
       index: 0
     };
+    this.data = [["鬼故事", "笑话"],
+      ["短篇", "长篇", "校园", "医院", "家里", "民间", "灵异", "原创", "内涵"]];
   }
 
   componentDidMount() {
@@ -70,8 +72,6 @@ export default class StoryPage extends BaseComponent {
   }
 
   render() {
-    let data = [["鬼故事", "笑话"],
-                ["短篇", "长篇", "校园", "医院", "家里", "民间", "灵异", "原创", "内涵"]];
     if(this.state.dataSource && this.state.dataSource.getRowCount() > 0) {
       return (
         <View style={{flex:1}}>
@@ -86,9 +86,9 @@ export default class StoryPage extends BaseComponent {
             bgColor={"red"}
             tintColor={"white"}
             selectItemColor={"red"}
-            data={data}
+            data={this.data}
             maxHeight={this.system.screenHeight * 0.5}
-            handler={(selection, row) => this.freshListView(selection, row, data[selection][row])}>
+            handler={(selection, row) => this.freshListView(selection, row)}>
 
             {this.renderListView(this.state.dataSource)}
 
@@ -135,8 +135,8 @@ export default class StoryPage extends BaseComponent {
     }, 3000);
   }
 
-  freshListView(section, row, data) {
-    alert(data[section][row]);
+  freshListView(section, row) {
+    alert(this.data[section][row]);
   }
 }
 

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 import MainComponent from "./MainPage";
-import TabItem from "./TabItem";
+import TestPage from "./TestPage";
 
 export default class FirstScene extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class FirstScene extends React.Component {
     //   console.log('把一个定时器的引用挂在this上');
     //   this._gotoMainPage();
     // }, 1500);
-    alert(this.props.scheme);
+    //alert(this.props.scheme);
   }
 
   _pressButton() {
@@ -41,6 +41,19 @@ export default class FirstScene extends React.Component {
       navigator.push({
         name: 'MainComponent',
         component: MainComponent
+      });
+    }
+  }
+  _gotoTest() {
+    const {navigator} = this.props;
+    //为什么这里可以取得 props.navigator?请看上文:
+    //<Component {...route.params} navigator={navigator} />
+    //这里传递了navigator作为props
+
+    if (navigator) {
+      navigator.push({
+        name: 'TestPage',
+        component: TestPage
       });
     }
   }
@@ -61,7 +74,7 @@ export default class FirstScene extends React.Component {
           <TouchableOpacity style={{height: 30, width:60, marginRight:10}} onPress={()=>{this._gotoMainPage()}}>
             <Text>gotoMain</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{height: 30, width:60}} onPress={()=>{alert("lsls")}}>
+          <TouchableOpacity style={{height: 30, width:60}} onPress={()=>this._gotoTest()}>
             <Text>测试</Text>
           </TouchableOpacity>
         </View>
