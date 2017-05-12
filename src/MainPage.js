@@ -27,7 +27,7 @@ export default class MainComponent extends Component {
       <TabNavigator>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'home'}
-          title="Home"
+          title="故事汇"
           titleStyle={{fontSize:13}}
           renderIcon={() =>
             <Image style={styles.img} source={require('./images/ic_fit_normal.png')} />
@@ -45,7 +45,7 @@ export default class MainComponent extends Component {
 
         <TabNavigator.Item
           selected={this.state.selectedTab === 'profile'}
-          title="Profile"
+          title="漫画图片"
           titleStyle={{fontSize:13}}
           renderIcon={() =>
             <Image style={styles.img} source={require('./images/ic_coupon_color_user.png')}/>

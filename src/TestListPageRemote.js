@@ -31,12 +31,12 @@ export default class TestListPage extends BaseComponent {
       hasMore:true,
       pageSize: 10
     };
-    //this.getData = this.getData.bind(this);
+    this.getData = this.getData.bind(this);
 }
 
   componentDidMount() {
     let page = this.data.index;
-    this.getData(true, -1).bind(this);
+    this.getData(true, -1);
   }
 
   render() {
@@ -123,7 +123,7 @@ export default class TestListPage extends BaseComponent {
       } else if (type == 1) {
         this.list.hideFooter();
       }
-    }).bind(this);
+    });
     this.data.index ++;
   }
 
