@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import BaseComponent from './BaseComponent'
 import PullToRefreshListView from 'react-native-smart-pull-to-refresh-listview'
-import PicDetailPage from 'PicDetailPage'
+import PicDetailPage from './PicDetailPage'
 
 export default class PicPage extends BaseComponent {
   // 构造
@@ -73,7 +73,7 @@ export default class PicPage extends BaseComponent {
   _renderRow (rowData, sectionID, rowID){
     return (
       <View style={styles.thumbnail}>
-        <TouchableOpacity style={styles.textContainer} onPress={()=>this.gotoDetail()}>
+        <TouchableOpacity style={styles.textContainer} onPress={()=>this.gotoDetail(rowData)}>
           <Text>{rowData.title}</Text>
         </TouchableOpacity>
       </View>
@@ -225,10 +225,11 @@ export default class PicPage extends BaseComponent {
     const {navigator} = this.props;
     if (navigator) {
       navigator.push({
-        name: 'PicDetailPage',
+        name: 'TestPage',
         component: PicDetailPage,
         params:{
-          id: rowData.id
+          id: rowData.id,
+          title: rowData.title
         }
       })
     }
