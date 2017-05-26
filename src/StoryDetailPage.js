@@ -25,8 +25,11 @@ export default class StoryDetailPage extends BaseComponent {
       if (code == 0) {
         let body = data.showapi_res_body;
         if (body) {
+          let text = data.showapi_res_body.text;
+          let reg = new RegExp("&nbsp;", "g");
+          text = text.replace(reg, "  ");
           this.setState({
-            text: data.showapi_res_body.text
+            text: text
           })
         }
       }

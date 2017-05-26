@@ -3,6 +3,7 @@
  */
 import React, {Component, PropTypes} from 'react';
 import {
+  InteractionManager,
   View,
   Text,
   StyleSheet,
@@ -41,7 +42,9 @@ export default class PicPage extends BaseComponent {
   }
 
   componentDidMount () {
-    this._pullToRefreshListView.beginRefresh();
+    InteractionManager.runAfterInteractions(()=>{
+      this._pullToRefreshListView.beginRefresh();
+    })
   }
 
   //Using ListView

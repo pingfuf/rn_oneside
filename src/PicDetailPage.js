@@ -72,10 +72,5 @@ const styles = StyleSheet.create({
   scroll: {
     flexWrap: 'wrap',
     alignItems: 'flex-start'
-  },
-  temp: {
-    height: 200,
-    width: 200,
-    marginTop: 20
   }
 });

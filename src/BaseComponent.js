@@ -5,6 +5,7 @@ import React from 'react';
 import {
   BackAndroid,
   Dimensions,
+  InteractionManager,
   Image,
   Platform,
   StyleSheet,
@@ -36,15 +37,17 @@ export default class BaseComponent extends React.Component {
   startRequest(url, data, callBack) {
     let realUrl = this.createUrl(url, data);
 
-    fetch(realUrl).then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        return {"code": 1};
-      }
-    }).then((data) => {
-      callBack(data)
-    }).done();
+    InteractionManager.runAfterInteractions(() => {
+      fetch(realUrl).then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return {"code": 1};
+        }
+      }).then((data) => {
+        callBack(data)
+      }).done();
+    });
   }
 
   /**
