@@ -1,5 +1,5 @@
 /**
- * Created by fupingfu on 2017/5/8.
+ * Created by fupingfu on 2017/7/17.
  */
 import React from 'react';
 import {
@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import BaseComponent from './base/BaseComponent'
 
-export default class PicDetailPage extends BaseComponent {
+export default class CourseManagerPage extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {

@@ -4,6 +4,7 @@
 import React from 'react';
 import {
   BackAndroid,
+  BackHandler,
   Dimensions,
   InteractionManager,
   Image,
@@ -17,6 +18,10 @@ import {
 
 const appId = "30094";
 const secret = "8f00d7d21c6645719b4d4f47713b4030";
+const LOADING_STATE = 100;
+const NO_DATA_STATE = 101;
+const FINISHED_STATE = 102;
+const NET_ERROR_STATE = 103;
 
 export default class BaseComponent extends React.Component {
   constructor(props) {
@@ -30,7 +35,7 @@ export default class BaseComponent extends React.Component {
 
   componentWillMount() {
     if (Platform.OS === 'android') {
-      BackAndroid.addEventListener('hardwareBackPress', this.onBackPressed.bind(this));
+      BackHandler.addEventListener('hardwareBackPress', this.onBackPressed.bind(this));
     }
   }
 
@@ -86,7 +91,7 @@ export default class BaseComponent extends React.Component {
     return (
       <View style={[styles.title, {width: this.system.screenWidth}]}>
         <TouchableOpacity onPress={()=>this.onBackPressed()}>
-          <Image source={require('./images/ic_arrow_left_black.png')} style={styles.back}/>
+          <Image source={require('./../images/ic_arrow_left_black.png')} style={styles.back}/>
         </TouchableOpacity>
         <Text style={styles.content} numberOfLines={1}>{title}</Text>
         {component}
@@ -109,7 +114,7 @@ export default class BaseComponent extends React.Component {
 
   componentWillUnmount() {
     if (Platform.OS === 'android') {
-      BackAndroid.removeEventListener('hardwareBackPress', this.onBackPressed);
+      BackHandler.removeEventListener('hardwareBackPress', this.onBackPressed);
     }
   }
 }

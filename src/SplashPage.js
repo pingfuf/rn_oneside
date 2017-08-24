@@ -14,7 +14,7 @@ import {
 import MainComponent from "./MainPage";
 import TestPage from "./TestPage";
 
-export default class FirstScene extends React.Component {
+export default class SplashPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};

@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import BaseComponent from './BaseComponent'
+import BaseComponent from './base/BaseComponent'
 import TestListPage from './TestListPageRemote'
 import TestLLL from './TestLLL';
 import PullToRefreshListViewDemo from './PullToRefreshListViewDemo'

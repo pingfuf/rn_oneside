@@ -6,9 +6,9 @@
 
 import React from 'react';
 import {
-    AppRegistry,
-    Navigator
+    AppRegistry
 } from 'react-native';
+import { Navigator } from 'react-native-deprecated-custom-components';
 
 import SplashPage from "./src/SplashPage";
 

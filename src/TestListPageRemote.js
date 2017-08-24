@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import BaseComponent from './BaseComponent';
+import BaseComponent from './base/BaseComponent';
 import RefreshInfiniteListView from '@remobile/react-native-refresh-infinite-listview';
 
 export default class TestListPage extends BaseComponent {

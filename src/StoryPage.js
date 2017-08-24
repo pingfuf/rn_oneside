@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import PullToRefreshListView from 'react-native-smart-pull-to-refresh-listview'
 import DropDownMenu from 'react-native-dropdown-menu';
-import BaseComponent from './BaseComponent';
+import BaseComponent from './base/BaseComponent';
 import StoryDetailPage from './StoryDetailPage';
 
 export default class StoryPage extends BaseComponent {
