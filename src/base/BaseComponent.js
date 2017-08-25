@@ -8,6 +8,7 @@ import {
   Dimensions,
   InteractionManager,
   Image,
+  NativeModules,
   Platform,
   StyleSheet,
   Text,
@@ -105,8 +106,14 @@ export default class BaseComponent extends React.Component {
   onBackPressed() {
     const {navigator} = this.props;
     if (navigator && navigator.getCurrentRoutes().length > 1) {
+      alert("111");
       navigator.pop();
       return true;
+    }
+
+    alert("000")
+    if (Platform.OS == "android") {
+      NativeModules.NavigatorModule.onReactModuleFinished();
     }
 
     return false;
@@ -114,7 +121,7 @@ export default class BaseComponent extends React.Component {
 
   componentWillUnmount() {
     if (Platform.OS === 'android') {
-      BackHandler.removeEventListener('hardwareBackPress', this.onBackPressed);
+      BackHandler.removeEventListener('hardwareBackPress', this.onBackPressed.bind(this));
     }
   }
 }

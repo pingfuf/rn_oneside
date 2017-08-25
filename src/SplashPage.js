@@ -11,10 +11,11 @@ import {
   View
 } from 'react-native';
 
+import BaseComponent from "./base/BaseComponent"
 import MainComponent from "./MainPage";
 import TestPage from "./TestPage";
 
-export default class SplashPage extends React.Component {
+export default class SplashPage extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {};
