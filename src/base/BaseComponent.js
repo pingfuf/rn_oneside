@@ -105,13 +105,13 @@ export default class BaseComponent extends React.Component {
    */
   onBackPressed() {
     const {navigator} = this.props;
+
+    console.log("navigator length = " + navigator.getCurrentRoutes().length);
     if (navigator && navigator.getCurrentRoutes().length > 1) {
-      alert("111");
       navigator.pop();
       return true;
     }
 
-    alert("000")
     if (Platform.OS == "android") {
       NativeModules.NavigatorModule.onReactModuleFinished();
     }

@@ -34,6 +34,7 @@ export default class StoryPage extends BaseComponent {
       storyTypes:["dp", "cp", "xy", "yy", "jl", "mj", "ly", "yc", "neihanguigushi"],
       section:0,
       row: 0,
+      text: "",
       dataList:[]
     };
   }
@@ -158,7 +159,9 @@ export default class StoryPage extends BaseComponent {
         component: StoryDetailPage,
         params: {
           id: rowData.id,
-          title: rowData.title
+          title: rowData.title,
+          type: this.data.row,
+          text: rowData.desc
         }
       })
     }

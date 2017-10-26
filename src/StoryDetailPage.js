@@ -14,33 +14,32 @@ import BaseComponent from './base/BaseComponent'
 export default class StoryDetailPage extends BaseComponent {
   constructor(props) {
     super(props);
+    let text = this.props.text;
+    if (text == null) {
+      text = "";
+    }
+
     this.state = {
-      text: ""
+      text: text
     };
   }
 
   componentDidMount() {
-    super.startRequest("http://route.showapi.com/955-2", {id: this.props.id}, (data)=>{
-      let code = data.showapi_res_code;
-      if (code == 0) {
-        let body = data.showapi_res_body;
-        if (body) {
-          let text = data.showapi_res_body.text;
-          let reg = new RegExp("&nbsp;", "g");
-          text = text.replace(reg, "  ");
-          this.setState({
-            text: text
-          })
+    if (this.props.type == 0) {
+      super.startRequest("http://route.showapi.com/955-2", {id: this.props.id}, (data) => {
+        let code = data.showapi_res_code;
+        if (code == 0) {
+          let body = data.showapi_res_body;
+          if (body) {
+            let text = data.showapi_res_body.text;
+            let reg = new RegExp("&nbsp;", "g");
+            text = text.replace(reg, "  ");
+            this.setState({
+              text: text
+            })
+          }
         }
-      }
-    })
-  }
-
-  _pressButton() {
-    const {navigator} = this.props;
-    if(navigator) {
-      //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面:FirstPageComponent了
-      navigator.pop();
+      })
     }
   }
 
