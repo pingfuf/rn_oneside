@@ -17,7 +17,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import BaseComponent from './base/BaseComponent'
+import BaseComponent from '../../base/BaseComponent'
 import PullToRefreshListView from 'react-native-smart-pull-to-refresh-listview'
 import PicDetailPage from './PicDetailPage'
 
@@ -236,6 +236,11 @@ export default class PicPage extends BaseComponent {
         }
       })
     }
+  }
+  temp(){
+      return (
+          <View></View>
+      )
   }
 }
 

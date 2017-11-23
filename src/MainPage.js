@@ -12,8 +12,8 @@ import {
 
 import TabNavigator from 'react-native-tab-navigator'
 import BaseComponent from './base/BaseComponent'
-import StoryPage from './StoryPage'
-import PicPage from './PicPage'
+import StoryPage from './ui/story/StoryPage'
+import PicPage from './ui/pic/PicPage'
 
 export default class MainComponent extends BaseComponent {
   constructor(props) {

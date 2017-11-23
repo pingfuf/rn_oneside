@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import PullToRefreshListView from 'react-native-smart-pull-to-refresh-listview'
 import DropDownMenu from 'react-native-dropdown-menu';
-import BaseComponent from './base/BaseComponent';
+import BaseComponent from '../../base/BaseComponent';
 import StoryDetailPage from './StoryDetailPage';
 
 export default class StoryPage extends BaseComponent {
@@ -52,7 +52,7 @@ export default class StoryPage extends BaseComponent {
         <DropDownMenu
           style={{flex: 1}}
           //set the arrow icon, default is a triangle
-          arrowImg={require('./images/ic_business_down.png')}
+          arrowImg={require('../../images/ic_business_down.png')}
 
           //set the icon of the selected item, default is a check mark
           //checkImage={require('./images/ic_business_up.png')}

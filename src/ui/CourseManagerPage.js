@@ -9,7 +9,7 @@ import {
   Text,
   View
 } from 'react-native';
-import BaseComponent from './base/BaseComponent'
+import BaseComponent from '../base/BaseComponent'
 
 export default class CourseManagerPage extends BaseComponent {
   constructor(props) {

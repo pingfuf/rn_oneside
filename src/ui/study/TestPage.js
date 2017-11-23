@@ -1,5 +1,5 @@
 /**
- * Created by fupingfu on 2017/8/25.
+ * Created by fupingfu on 2017/4/26.
  */
 import React from 'react';
 import {
@@ -9,12 +9,12 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import BaseComponent from '../base/BaseComponent'
-import TestListPage from '../TestListPageRemote'
-import TestLLL from '../TestLLL';
-import PullToRefreshListViewDemo from '../PullToRefreshListViewDemo'
+import BaseComponent from '../../base/BaseComponent'
+import TestListPage from './TestListPageRemote'
+import TestLLL from './TestLLL';
+import PullToRefreshListViewDemo from './PullToRefreshListViewDemo'
 
-export default class StudyTest extends TestLLL {
+export default class TestPage extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {};

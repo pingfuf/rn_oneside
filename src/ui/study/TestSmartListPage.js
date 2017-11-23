@@ -10,8 +10,8 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import BaseComponent from './base/BaseComponent'
-import PullToRefreshListView from './list/PullToRefreshListView';
+import BaseComponent from '../../base/BaseComponent'
+import PullToRefreshListView from '../../libs/list/PullToRefreshListView';
 
 export default class TestSmartListPage extends BaseComponent {
   constructor(props) {

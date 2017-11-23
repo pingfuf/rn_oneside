@@ -4,11 +4,11 @@
 import React from 'react';
 
 import MainPage from '../MainPage'
-import StoryPage from '../StoryPage'
-import PicPage from '../PicPage'
-import PicDetailPage from "../PicDetailPage"
-import StoryDetailPage from "../StoryDetailPage"
-import TestPage from "../TestPage";
+import StoryPage from '../ui/story/StoryPage'
+import PicPage from '../ui/pic/PicPage'
+import PicDetailPage from "../ui/pic/PicDetailPage"
+import StoryDetailPage from "../ui/story/StoryDetailPage"
+import TestPage from "../ui/study/TestPage";
 
 export default class ComponentDic extends React.Component {
 

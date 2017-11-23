@@ -10,7 +10,7 @@ import {
   Text,
   View
 } from 'react-native';
-import BaseComponent from './base/BaseComponent'
+import BaseComponent from '../../base/BaseComponent'
 
 export default class PicDetailPage extends BaseComponent {
   constructor(props) {

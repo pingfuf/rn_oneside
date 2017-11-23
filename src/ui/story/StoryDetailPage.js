@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import BaseComponent from './base/BaseComponent'
+import BaseComponent from '../../base/BaseComponent'
 
 export default class StoryDetailPage extends BaseComponent {
   constructor(props) {
